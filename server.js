@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
-const port = 3000
+//const port = 3000
 const bodyParser = require('body-parser');
 
 const request = require('request');
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,6 +41,6 @@ request(url, function (err, response, body) {
 })
 
 
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port,ip);
+//app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
