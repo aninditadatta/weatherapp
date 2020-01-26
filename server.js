@@ -28,6 +28,7 @@ request(url, function (err, response, body) {
     if(err){
       res.render('index', {weather: null, error: 'Error, please try again'});
     } else {
+       console.log("Log Env Variable " + process.env.test);
       let weather = JSON.parse(body)
       if(weather.main == undefined){
         res.render('index', {weather: null, error: 'Error, please try again'});
